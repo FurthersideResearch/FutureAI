@@ -51,13 +51,14 @@
               $(this).html(html.replace(urlRegex, '<div class="link-bubble" data-url="$1">$1</div>'));
             });
 
-            // Add click event to link bubble
-            $(".link-bubble").click(function() {
-              const url = $(this).attr('data-url');
-              $('#overlay-iframe').attr('src', url);
-              $('.overlay').show();
-            });
-          });
+// Add click event to link bubble
+$(".link-bubble").click(function(event) {
+  event.preventDefault();  // Prevent default click behavior
+  const url = $(this).attr('data-url');
+  $('#overlay-iframe').attr('src', url);
+  $('.overlay').show();
+});
+
 
           observer.observe(chatElement, {
             attributes: true,
