@@ -1,58 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Your Chatbot Page</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <style>
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: none;
-    }
-    .overlay iframe {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 80%;
-      height: 80%;
-      transform: translate(-50%, -50%);
-    }
-  </style>
-</head>
-<body>
+<script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+<script>
+  // Initialize Botpress Web Chat
+  window.botpressWebChat.init({
+    "composerPlaceholder": "Chat with bot",
+    "botConversationDescription": "This chatbot was built surprisingly fast with Botpress",
+    "botId": "77120fd2-bb36-46f3-9388-3c8b3c9e29c1",
+    "hostUrl": "https://cdn.botpress.cloud/webchat/v1",
+    "messagingUrl": "https://messaging.botpress.cloud",
+    "clientId": "77120fd2-bb36-46f3-9388-3c8b3c9e29c1",
+    "lazySocket": true
+  });
 
-  <!-- Overlay for iframe -->
-  <div class="overlay">
-    <iframe id="overlay-iframe" src=""></iframe>
-  </div>
-
-  <!-- Your Botpress Scripts -->
-  <script src="https://cdn.botpress.cloud/webchat/v0/inject.js"></script>
-  <script src="https://mediafiles.botpress.cloud/0424fb08-e9bf-4780-b3b7-566595200794/webchat/config.js" defer></script>
-
-  <!-- Custom Script -->
-  <script>
-    $(document).ready(function() {
-      // Listen for link clicks and show them in the overlay
-      $(document).on('click', 'a', function(event) {
-        event.preventDefault();
-        const url = $(this).attr('href');
-        $('#overlay-iframe').attr('src', url);
-        $('.overlay').show();
-      });
-
-      // Close overlay on click
-      $('.overlay').click(function() {
-        $(this).hide();
-      });
+  // Function to check for new links and assign unique IDs
+  function checkForLinks() {
+    const links = document.querySelectorAll('a[href="https://www.furtherside.com/"]:not([data-processed])');
+    links.forEach((link, index) => {
+      link.id = 'unique-link-' + index;
+      link.setAttribute('data-processed', 'true');
     });
-  </script>
-</body>
-</html>
+  }
 
+  // Call this function periodically to check for new links
+  setInterval(checkForLinks, 1000);
+</script>
 
 
