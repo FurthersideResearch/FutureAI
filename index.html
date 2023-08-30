@@ -1,27 +1,14 @@
 <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
 <script>
-  // Initialize Botpress Web Chat
   window.botpressWebChat.init({
-    "composerPlaceholder": "Chat with bot",
-    "botConversationDescription": "This chatbot was built surprisingly fast with Botpress",
-    "botId": "77120fd2-bb36-46f3-9388-3c8b3c9e29c1",
-    "hostUrl": "https://cdn.botpress.cloud/webchat/v1",
-    "messagingUrl": "https://messaging.botpress.cloud",
-    "clientId": "77120fd2-bb36-46f3-9388-3c8b3c9e29c1",
-    "lazySocket": true
+      "composerPlaceholder": "Chat with bot",
+      "botConversationDescription": "This chatbot was built surprisingly fast with Botpress",
+      "botId": "77120fd2-bb36-46f3-9388-3c8b3c9e29c1",
+      "hostUrl": "https://cdn.botpress.cloud/webchat/v1",
+      "messagingUrl": "https://messaging.botpress.cloud",
+      "clientId": "77120fd2-bb36-46f3-9388-3c8b3c9e29c1",
+      "lazySocket": true
   });
-
-  // Function to check for new links and assign unique IDs
-  function checkForLinks() {
-    const links = document.querySelectorAll('a[href="https://www.furtherside.com/"]:not([data-processed])');
-    links.forEach((link, index) => {
-      link.id = 'unique-link-' + index;
-      link.setAttribute('data-processed', 'true');
-    });
-  }
-
-  // Call this function periodically to check for new links
-  setInterval(checkForLinks, 1000);
 </script>
 
 
