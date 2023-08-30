@@ -4,13 +4,6 @@
   <title>Your Chatbot Page</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <style>
-    .link-bubble {
-      background-color: #f1f1f1;
-      padding: 10px;
-      border-radius: 5px;
-      display: inline-block;
-      cursor: pointer;
-    }
     .overlay {
       position: fixed;
       top: 0;
@@ -41,37 +34,13 @@
   <script src="https://mediafiles.botpress.cloud/0424fb08-e9bf-4780-b3b7-566595200794/webchat/config.js" defer></script>
   <script>
     $(document).ready(function() {
-      function observeChat() {
-        const chatElement = document.querySelector('.bpw-chat');
-        if (chatElement) {
-          const observer = new MutationObserver(function() {
-            $(".bpw-message-text").each(function() {
-              var html = $(this).html();
-              var urlRegex = /(https?:\/\/[^\s]+)/g;
-              $(this).html(html.replace(urlRegex, '<div class="link-bubble" data-url="$1">$1</div>'));
-            });
-
-            // Add click event to link bubble
-            $(".link-bubble").click(function(event) {
-              event.preventDefault();  // Prevent default click behavior
-              const url = $(this).attr('data-url');
-              $('#overlay-iframe').attr('src', url);
-              $('.overlay').show();
-            });
-          });
-
-          observer.observe(chatElement, {
-            attributes: true,
-            childList: true,
-            subtree: true
-          });
-        } else {
-          setTimeout(observeChat, 1000);
-        }
-      }
-      
-      // Start observing the chat
-      observeChat();
+      // Listen for link clicks and show them in the overlay
+      $(document).on('click', 'a', function(event) {
+        event.preventDefault();
+        const url = $(this).attr('href');
+        $('#overlay-iframe').attr('src', url);
+        $('.overlay').show();
+      });
 
       // Close overlay on click
       $('.overlay').click(function() {
@@ -81,5 +50,6 @@
   </script>
 </body>
 </html>
+
 
 
